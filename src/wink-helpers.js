@@ -1,6 +1,6 @@
 //     wink-helpers
 //     Low level helper functions for Javascript
-//     arrays and objects used in wink.
+//     arrays and objects.
 //
 //     Copyright (C) 2017  GRAYPE Systems Private Limited
 //
