@@ -32,8 +32,7 @@ helpers.array = Object.create( null);
 
 // Tests if argument `v` is a JS array; returns `true` if it is, otherwise returns `false`.
 helpers.array.isArray = function ( v ) {
-  return ( v && ( Object.prototype.toString.call( v ) === '[object Array]' ) ) ? true : false; // eslint-disable-line no-unneeded-ternary
-
+  return ( ( v !== undefined ) && ( v !== null ) && ( Object.prototype.toString.call( v ) === '[object Array]' ) );
 }; // isArray()
 
 
