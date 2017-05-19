@@ -109,6 +109,14 @@ describe( 'ascending on single accessor sort helpers - array', function () {
     } );
 } );
 
+describe( 'ascending on dual accessors sort helpers - array', function () {
+  var expectedOutputIs = [ { name: { fn: 'Mary', sn: 'Garcia' } }, { name: { fn: 'Julia', sn: 'Garcia' } }, { name: { fn: 'Maria', sn: 'Rodriguez' } }, { name: { fn: 'James', sn: 'Smith' } } ],
+      whenInputIs = [ { name: { fn: 'James', sn: 'Smith' } }, { name: { fn: 'Mary', sn: 'Garcia' } }, { name: { fn: 'Julia', sn: 'Garcia' } }, { name: { fn: 'Maria', sn: 'Rodriguez' } } ];
+    it( 'should return ' + JSON.stringify( expectedOutputIs ) + '\n\tif the input is ' + JSON.stringify( whenInputIs ), function () {
+      expect( whenInputIs.sort( helpers.array.ascendingOn( 'name', 'sn' ) ) ).to.deep.equal( expectedOutputIs );
+    } );
+} );
+
 describe( 'ascending on single accessor sort helpers - object', function () {
   var expectedOutputIs = [ { age: 1, gender: 'm' }, { age: 2, gender: 'm' }, { age: 3, gender: 'f' }, { age: 4, gender: 'm' } ],
       whenInputIs = [ { age: 4, gender: 'm' }, { age: 3, gender: 'f'  }, { age: 2, gender: 'm' }, { age: 1, gender: 'm'  } ];
@@ -119,9 +127,17 @@ describe( 'ascending on single accessor sort helpers - object', function () {
 
 describe( 'descending on single accessor sort helpers - array', function () {
   var expectedOutputIs = [  [ 6, 'c1' ], [ 4, 'd' ], [ 3, 'c' ], [ 2, 'b' ], [ 1, 'a' ], [ 1, 'a1' ] ],
-      whenInputIs = [ [ 1, 'a' ], [ 1, 'a1' ], [ 2, 'b' ], [ 3, 'c' ], [ 4, 'd' ], [ 6, 'c1' ] ];
+      whenInputIs = [ [ 1, 'a' ], [ 1, 'a1' ], [ 2, 'b' ], [ 3, 'c' ], [ 6, 'c1' ], [ 4, 'd' ] ];
     it( 'should return ' + JSON.stringify( expectedOutputIs ) + '\n\tif the input is ' + JSON.stringify( whenInputIs ), function () {
       expect( whenInputIs.sort( helpers.array.descendingOn( 0 ) ) ).to.deep.equal( expectedOutputIs );
+    } );
+} );
+
+describe( 'descending on dual accessors sort helpers - array', function () {
+  var expectedOutputIs = [ { name: { fn: 'James', sn: 'Smith' } }, { name: { fn: 'Maria', sn: 'Rodriguez' } }, { name: { fn: 'Mary', sn: 'Garcia' } }, { name: { fn: 'Julia', sn: 'Garcia' } } ],
+      whenInputIs = [ { name: { fn: 'James', sn: 'Smith' } }, { name: { fn: 'Mary', sn: 'Garcia' } }, { name: { fn: 'Julia', sn: 'Garcia' } }, { name: { fn: 'Maria', sn: 'Rodriguez' } } ];
+    it( 'should return ' + JSON.stringify( expectedOutputIs ) + '\n\tif the input is ' + JSON.stringify( whenInputIs ), function () {
+      expect( whenInputIs.sort( helpers.array.descendingOn( 'name', 'sn' ) ) ).to.deep.equal( expectedOutputIs );
     } );
 } );
 
@@ -130,5 +146,29 @@ describe( 'descending on single accessor sort helpers - object', function () {
       whenInputIs = [ { age: 1, gender: 'm' }, { age: 2, gender: 'm' }, { age: 3, gender: 'f' }, { age: 4, gender: 'm' } ];
     it( 'should return ' + JSON.stringify( expectedOutputIs ) + '\n\tif the input is ' + JSON.stringify( whenInputIs ), function () {
       expect( whenInputIs.sort( helpers.array.descendingOn( 'age' ) ) ).to.deep.equal( expectedOutputIs );
+    } );
+} );
+
+describe( 'pluck specific accessor with defined limit', function () {
+  var expectedOutputIs = [ 1, 2, 3, 4 ],
+      whenInputIs = [ { age: 1, gender: 'm' }, { age: 2, gender: 'm' }, { age: 3, gender: 'f' }, { age: 4, gender: 'm' } ];
+    it( 'should return ' + JSON.stringify( expectedOutputIs ) + '\n\tif the input is ' + JSON.stringify( whenInputIs ), function () {
+      expect(  helpers.array.pluck( whenInputIs, 'age' ) ).to.deep.equal( expectedOutputIs );
+    } );
+} );
+
+describe( 'pluck with default accessor and limit', function () {
+  var expectedOutputIs = [ 'a', 'b', 'c', 'd' ],
+      whenInputIs = [ [ 'a', 1 ], [ 'b', 2 ], [ 'c', 3 ], [ 'd', 4 ] ];
+    it( 'should return ' + JSON.stringify( expectedOutputIs ) + '\n\tif the input is ' + JSON.stringify( whenInputIs ), function () {
+      expect(  helpers.array.pluck( whenInputIs ) ).to.deep.equal( expectedOutputIs );
+    } );
+} );
+
+describe( 'pluck with accessor and very large limit', function () {
+  var expectedOutputIs = [ 1, 2, 3, 4 ],
+      whenInputIs = [ [ 'a', 1 ], [ 'b', 2 ], [ 'c', 3 ], [ 'd', 4 ] ];
+    it( 'should return ' + JSON.stringify( expectedOutputIs ) + '\n\tif the input is ' + JSON.stringify( whenInputIs ), function () {
+      expect(  helpers.array.pluck( whenInputIs, 1, 10000 ) ).to.deep.equal( expectedOutputIs );
     } );
 } );
