@@ -24,6 +24,29 @@
 //
 var helpers = Object.create( null );
 
+// ### Private Functions
+
+// #### Product Reducer (Callback)
+
+// Callback function used by `reduce` inside the `product()` function.
+// Follows the standard guidelines of `reduce()` callback function.
+var productReducer = function ( prev, curr ) {
+  var c,
+      cmax = curr.length;
+  var p,
+      pmax = prev.length;
+  var result = [];
+
+  for ( p = 0; p < pmax; p += 1 ) {
+    for ( c = 0; c < cmax; c += 1 ) {
+      result.push( prev[ p ].concat( curr[ c ] ) );
+    }
+  }
+  return ( result );
+}; // productReducer()
+
+// ### Public Function
+
 // ### Array Helpers
 
 helpers.array = Object.create( null);
@@ -115,6 +138,18 @@ helpers.array.pluck = function ( a, key, limit ) {
   for ( k = 0; k < lim; k += 1 ) plucked[ k ] = a[ k ][ i ];
   return plucked;
 }; // pluck()
+
+// #### product
+
+// Finds the Cartesian Product of arrays present inside the array `a`. Therefore
+// the array `a` must be an array of 1-dimensional arrays. For example,
+// `product( [ [ 9, 8 ], [ 1, 2 ] ] )`
+// will produce `[ [ 9, 1 ], [ 9, 2 ], [ 8, 1 ], [ 8, 2 ] ]`.
+helpers.array.product = function ( a ) {
+  return (
+    a.reduce( productReducer, [ [] ] )
+  );
+};
 
 
 // ### Object Helpers

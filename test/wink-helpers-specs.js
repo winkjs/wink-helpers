@@ -173,6 +173,47 @@ describe( 'pluck with accessor and very large limit', function () {
   } );
 } );
 
+describe( 'cartesian product', function () {
+  var expectedOutputIs = [
+        [ [ 9, 1 ], [ 9, 2 ], [ 8, 1 ], [ 8, 2 ] ],
+        [ ],
+        [
+          [ 1, 4, 5 ],
+          [ 1, 4, 6 ],
+          [ 2, 4, 5 ],
+          [ 2, 4, 6 ],
+          [ 3, 4, 5 ],
+          [ 3, 4, 6 ]
+        ],
+        [
+          [ 1, 4, 6 ],
+          [ 1, 4, 7 ],
+          [ 1, 5, 6 ],
+          [ 1, 5, 7 ],
+          [ 2, 4, 6 ],
+          [ 2, 4, 7 ],
+          [ 2, 5, 6 ],
+          [ 2, 5, 7 ],
+          [ 3, 4, 6 ],
+          [ 3, 4, 7 ],
+          [ 3, 5, 6 ],
+          [ 3, 5, 7 ]
+        ]
+      ],
+      whenInputIs = [
+        [ [ 9, 8 ], [ 1, 2 ] ],
+        [ [ 9, 8 ], [ 1, 2 ], [ ] ],
+        [ [ 1, 2, 3 ], [ 4 ], [ 5, 6 ] ],
+        [ [ 1, 2, 3 ], [ 4, 5 ], [ 6, 7 ] ]
+      ];
+
+  whenInputIs.forEach( function ( input, i ) {
+    it( 'should return ' + JSON.stringify( expectedOutputIs[ i ] ) + '\n\tif the input is ' + JSON.stringify( input ), function () {
+      expect(  helpers.array.product( input, 1, 10000 ) ).to.deep.equal( expectedOutputIs[ i ] );
+    } );
+  } );
+} );
+
 describe( 'isObject', function () {
   var tests = [
     { whenInputIs: 'UPPERCASE', expectedOutputIs: false },
