@@ -209,7 +209,7 @@ describe( 'cartesian product', function () {
 
   whenInputIs.forEach( function ( input, i ) {
     it( 'should return ' + JSON.stringify( expectedOutputIs[ i ] ) + '\n\tif the input is ' + JSON.stringify( input ), function () {
-      expect(  helpers.array.product( input, 1, 10000 ) ).to.deep.equal( expectedOutputIs[ i ] );
+      expect(  helpers.array.product( input ) ).to.deep.equal( expectedOutputIs[ i ] );
     } );
   } );
 } );

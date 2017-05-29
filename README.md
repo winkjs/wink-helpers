@@ -39,6 +39,9 @@ console.log( helpers.object.table( { mobile: 33, chargers: 45, usb: 27 } ) );
 var ppl = [ { name: 'john', age: 42 }, { name: 'marry', age: 37 } ];
 console.log( ppl.sort( ascendingOn( 'age' ) ) );
 // -> [ { "name": "marry", "age": 37 }, { "name": "john", "age": 42 } ]
+
+console.log( helpers.array.product( [ [ 9, 8 ], [ 1, 2 ] ] ) );
+// -> [ [ 9, 1 ], [ 9, 2 ], [ 8, 1 ], [ 8, 2 ] ]
 ```
 
 ## API
@@ -67,6 +70,19 @@ It is a set of handy [compare functions](https://developer.mozilla.org/en-US/doc
 
 #### pluck( array, key, limit )
 Plucks the values specified by the `key` from each element of the `array` of *arrays* or *objects*, and returns the resultant array. The default value of `key` is **0**. The number of elements to be plucked is defined by the `limit`, whose default value is `array.length`.
+
+#### product( array )
+Returns the *cartesian product* of the arrays present inside the `array` argument. For example, if the `array` argument is `[ [ 1, 2, 3 ], [ 4 ], [ 5, 6 ] ]`, then the return value will be:
+```javascript
+[
+  [ 1, 4, 5 ],
+  [ 1, 4, 6 ],
+  [ 2, 4, 5 ],
+  [ 2, 4, 6 ],
+  [ 3, 4, 5 ],
+  [ 3, 4, 6 ]
+]
+```
 
 ### object
 
