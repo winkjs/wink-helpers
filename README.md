@@ -3,7 +3,7 @@
 
 > Low level helper functions for Javascript arrays and objects used in wink
 
-### [![Build Status](https://api.travis-ci.org/decisively/wink-helpers.svg?branch=master)](https://travis-ci.org/decisively/wink-helpers) [![Coverage Status](https://coveralls.io/repos/github/decisively/wink-helpers/badge.svg?branch=master)](https://coveralls.io/github/decisively/wink-helpers?branch=master)
+### [![Build Status](https://api.travis-ci.org/decisively/wink-helpers.svg?branch=master)](https://travis-ci.org/decisively/wink-helpers) [![Coverage Status](https://coveralls.io/repos/github/decisively/wink-helpers/badge.svg?branch=master)](https://coveralls.io/github/decisively/wink-helpers?branch=master) [![devDependencies Status](https://david-dm.org/decisively/wink-helpers/dev-status.svg)](https://david-dm.org/decisively/wink-helpers?type=dev)
 
 <img align="right" src="https://decisively.github.io/wink-logos/logo-title.png" width="100px" >
 
