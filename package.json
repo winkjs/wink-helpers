@@ -5,8 +5,13 @@
   "keywords": [
     "Array",
     "Object",
-    "Wink",
-    "Helper"
+    "Helper",
+    "Cartesian Product",
+    "Frequency Table",
+    "Validate",
+    "Validation",
+    "Sort",
+    "Pluck"
   ],
   "main": "src/wink-helpers.js",
   "scripts": {
@@ -36,5 +41,6 @@
     "jshint": "^2.9.4",
     "mocha": "^3.1.0",
     "mocha-lcov-reporter": "^1.2.0"
-  }
+  },
+  "runkitExampleFilename": "runkit/example.js"
 }

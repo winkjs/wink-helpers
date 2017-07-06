@@ -11,24 +11,26 @@ Perform commonly needed operations of array and objects using **`wink-helpers`**
 
 
 ## Installation
-Use **[npm](https://www.npmjs.com/package/wink-helpers)** to install:
+Use [npm](https://www.npmjs.com/package/wink-helpers) to install:
 ```
 npm install wink-helpers --save
 ```
 
 
-## Example
+## Example [![Try on Runkit](https://badge.runkitcdn.com/wink-helpers.svg)](https://npm.runkit.com/wink-helpers)
+
 ```javascript
 // Load wink helpers
 var helpers = require( 'wink-helpers' );
+
 
 /* Use array helpers */
 console.log( helpers.array.isArray( [] ) );
 // -> true
 
-var ppl = [ { name: 'john', age: 42 }, { name: 'marry', age: 37 } ];
+var ppl = [ { name: 'aiden', age: 42 }, { name: 'olivia', age: 37 } ];
 console.log( ppl.sort( helpers.array.ascendingOn( 'age' ) ) );
-// -> [ { "name": "marry", "age": 37 }, { "name": "john", "age": 42 } ]
+// -> [ { "name": "olivia", "age": 37 }, { "name": "aiden", "age": 42 } ]
 
 console.log( helpers.array.product( [ [ 9, 8 ], [ 1, 2 ] ] ) );
 // -> [ [ 9, 1 ], [ 9, 2 ], [ 8, 1 ], [ 8, 2 ] ]
@@ -38,7 +40,7 @@ console.log( helpers.array.product( [ [ 9, 8 ], [ 1, 2 ] ] ) );
 console.log( helpers.object.isObject( {} ) );
 // -> true
 
-console.log( helpers.object.isObject( new Set() ) )
+console.log( helpers.object.isObject( new Set() ) );
 // -> false
 
 console.log( helpers.object.table( { mobile: 33, chargers: 45, usb: 27 } ) );
