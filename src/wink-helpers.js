@@ -237,7 +237,7 @@ helpers.validate = Object.create( null );
 helpers.validate.isObject = helpers.object.isObject;
 helpers.validate.isArray = helpers.array.isArray;
 
-// #### isInteger
+// #### isFiniteInteger
 
 // Validates if `n` is a finite integer.
 helpers.validate.isFiniteInteger = function ( n ) {
@@ -247,6 +247,17 @@ helpers.validate.isFiniteInteger = function ( n ) {
     isFinite( n ) &&
     ( n === Math.round( n ) )
   );
-}; // isInteger()
+}; // isFiniteInteger()
+
+// #### isFiniteNumber
+
+// Validates if `n` is a valid number.
+helpers.validate.isFiniteNumber = function ( n ) {
+  return (
+    ( typeof n === 'number' ) &&
+    !isNaN( n ) &&
+    isFinite( n )
+  );
+}; // isFiniteNumber()
 
 module.exports = helpers;

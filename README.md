@@ -118,6 +118,9 @@ Alias for `object.isObject()`.
 #### isFiniteInteger( value )
 Tests if argument `value` is a finite integer; returns `true` if it is, otherwise returns `false`.
 
+#### isFiniteNumber( value )
+Tests if argument `value` is a finite number; returns `true` if it is, otherwise returns `false`.
+
 
 ## Need Help?
 If you spot a bug and the same has not yet been reported, raise a new [issue](https://github.com/decisively/wink-porter2-stemmer/issues) or consider fixing it and sending a pull request.
