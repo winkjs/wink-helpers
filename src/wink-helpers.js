@@ -229,4 +229,24 @@ helpers.object.table = function ( obj, f ) {
   return pairs;
 }; // table()
 
+// ### Validation Helpers
+
+helpers.validate = Object.create( null );
+
+// Create aliases for isObject and isArray.
+helpers.validate.isObject = helpers.object.isObject;
+helpers.validate.isArray = helpers.array.isArray;
+
+// #### isInteger
+
+// Validates if `n` is a finite integer.
+helpers.validate.isFiniteInteger = function ( n ) {
+  return (
+    ( typeof n === 'number' ) &&
+    !isNaN( n ) &&
+    isFinite( n ) &&
+    ( n === Math.round( n ) )
+  );
+}; // isInteger()
+
 module.exports = helpers;
