@@ -24,14 +24,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/decisively/wink-helpers.git"
+    "url": "git+https://github.com/winkjs/wink-helpers.git"
   },
   "author": "Sanjaya Kumar Saxena",
   "license": "AGPL-3.0",
   "bugs": {
-    "url": "https://github.com/decisively/wink-helpers/issues"
+    "url": "https://github.com/winkjs/wink-helpers/issues"
   },
-  "homepage": "https://github.com/decisively/wink-helpers#readme",
+  "homepage": "https://github.com/winkjs/wink-helpers#readme",
   "devDependencies": {
     "chai": "^4.1.1",
     "coveralls": "^2.11.15",

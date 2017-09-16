@@ -3,7 +3,7 @@
 
 > Helper functions for Javascript arrays and objects
 
-### [![Build Status](https://api.travis-ci.org/decisively/wink-helpers.svg?branch=master)](https://travis-ci.org/decisively/wink-helpers) [![Coverage Status](https://coveralls.io/repos/github/decisively/wink-helpers/badge.svg?branch=master)](https://coveralls.io/github/decisively/wink-helpers?branch=master) [![Inline docs](http://inch-ci.org/github/decisively/wink-helpers.svg?branch=master)](http://inch-ci.org/github/decisively/wink-helpers) [![devDependencies Status](https://david-dm.org/decisively/wink-helpers/dev-status.svg)](https://david-dm.org/decisively/wink-helpers?type=dev)
+### [![Build Status](https://api.travis-ci.org/winkjs/wink-helpers.svg?branch=master)](https://travis-ci.org/winkjs/wink-helpers) [![Coverage Status](https://coveralls.io/repos/github/winkjs/wink-helpers/badge.svg?branch=master)](https://coveralls.io/github/winkjs/wink-helpers?branch=master) [![Inline docs](http://inch-ci.org/github/winkjs/wink-helpers.svg?branch=master)](http://inch-ci.org/github/winkjs/wink-helpers) [![devDependencies Status](https://david-dm.org/winkjs/wink-helpers/dev-status.svg)](https://david-dm.org/winkjs/wink-helpers?type=dev)
 
 <img align="right" src="https://decisively.github.io/wink-logos/logo-title.png" width="100px" >
 
@@ -123,7 +123,7 @@ Tests if argument `value` is a finite number; returns `true` if it is, otherwise
 
 
 ## Need Help?
-If you spot a bug and the same has not yet been reported, raise a new [issue](https://github.com/decisively/wink-porter2-stemmer/issues) or consider fixing it and sending a pull request.
+If you spot a bug and the same has not yet been reported, raise a new [issue](https://github.com/winkjs/wink-helpers/issues) or consider fixing it and sending a pull request.
 
 
 ## Copyright & License
