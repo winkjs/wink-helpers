@@ -48,7 +48,7 @@ console.log( helpers.object.table( { mobile: 33, chargers: 45, usb: 27 } ) );
 ```
 
 ## API
-The helper functions are classified into [array](#array) and [object](#object).
+The helper functions are classified into [array](#array), [object](#object) and [validate](#validate).
 
 ### array
 
@@ -89,8 +89,8 @@ Returns the *cartesian product* of the arrays present inside the `array` argumen
 
 ### object
 
-#### isObject( v )
-Tests if argument `v` is a JS object; returns `true` if it is, otherwise returns `false`.
+#### isObject( value )
+Tests if argument `value` is a JS object; returns `true` if it is, otherwise returns `false`.
 
 #### keys( obj )
 Returns keys of the `obj` in an `array`.
@@ -106,6 +106,17 @@ Returns the *frequency* or *count* of every unique value from each `key: value` 
 
 #### table( obj [, f] )
 Converts each `key: value` pair in the `obj` into an array of `[ key, value ]` pairs. Note the returned value be an array of array. Second argument - `f` is optional; it is a function, which is called with each *value*.
+
+### validate
+
+#### isArray( value )
+Alias for `array.isArray()`.
+
+#### isObject( value )
+Alias for `object.isObject()`.
+
+#### isFiniteInteger( value )
+Tests if argument `value` is a finite integer; returns `true` if it is, otherwise returns `false`.
 
 
 ## Need Help?
