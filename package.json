@@ -1,6 +1,6 @@
 {
   "name": "wink-helpers",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Low level helper functions for Javascript arrays and objects",
   "keywords": [
     "Array",
