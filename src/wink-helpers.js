@@ -63,31 +63,37 @@ helpers.array.isArray = function ( v ) {
 
 // Set of helpers to sort either numbers or strings. For key/value pairs,
 // the format for each element must be `[ key, value ]`.
+// Sort helper to sort an array in ascending order.
 helpers.array.ascending = function ( a, b ) {
   return ( a > b ) ? 1 :
             ( a === b ) ? 0 : -1;
 }; // ascending()
 
+// Sort helper to sort an array in descending order.
 helpers.array.descending = function ( a, b ) {
   return ( b > a ) ? 1 :
             ( b === a ) ? 0 : -1;
 }; // descending()
 
+// Sort helper to sort an array of `[ key, value ]` in ascending order by **key**.
 helpers.array.ascendingOnKey = function ( a, b ) {
   return ( a[ 0 ] > b[ 0 ] ) ? 1 :
             ( a[ 0 ] === b[ 0 ] ) ? 0 : -1;
 }; // ascendingOnKey()
 
+// Sort helper to sort an array of `[ key, value ]` in descending order by **key**.
 helpers.array.descendingOnKey = function ( a, b ) {
   return ( b[ 0 ] > a[ 0 ] ) ? 1 :
             ( b[ 0 ] === a[ 0 ] ) ? 0 : -1;
 }; // descendingOnKey()
 
+// Sort helper to sort an array of `[ key, value ]` in ascending order by **value**.
 helpers.array.ascendingOnValue = function ( a, b ) {
   return ( a[ 1 ] > b[ 1 ] ) ? 1 :
             ( a[ 1 ] === b[ 1 ] ) ? 0 : -1;
 }; // ascendingOnValue()
 
+// Sort helper to sort an array of `[ key, value ]` in descending order by **value**.
 helpers.array.descendingOnValue = function ( a, b ) {
   return ( b[ 1 ] > a[ 1 ] ) ? 1 :
             ( b[ 1 ] === a[ 1 ] ) ? 0 : -1;
@@ -97,6 +103,7 @@ helpers.array.descendingOnValue = function ( a, b ) {
 // key or on a composite keys (max 2 only). Just a remider, the generated function
 // does not sort on two keys; instead it will sort on a key composed of the two
 // accessors.
+// Sorts in ascending order on `accessor1` & `accessor2` (optional).
 helpers.array.ascendingOn = function ( accessor1, accessor2 ) {
   if ( accessor2 ) {
     return ( function ( a, b ) {
@@ -110,6 +117,7 @@ helpers.array.ascendingOn = function ( accessor1, accessor2 ) {
   } );
 }; // ascendingOn()
 
+// Sorts in descending order on `accessor1` & `accessor2` (optional).
 helpers.array.descendingOn = function ( accessor1, accessor2 ) {
   if ( accessor2 ) {
     return ( function ( a, b ) {
