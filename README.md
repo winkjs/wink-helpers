@@ -1,13 +1,12 @@
 
 # wink-helpers
-
-> Helper functions for Javascript arrays and objects
+Helper functions for Javascript array, object, and string
 
 ### [![Build Status](https://api.travis-ci.org/winkjs/wink-helpers.svg?branch=master)](https://travis-ci.org/winkjs/wink-helpers) [![Coverage Status](https://coveralls.io/repos/github/winkjs/wink-helpers/badge.svg?branch=master)](https://coveralls.io/github/winkjs/wink-helpers?branch=master) [![Inline docs](http://inch-ci.org/github/winkjs/wink-helpers.svg?branch=master)](http://inch-ci.org/github/winkjs/wink-helpers) [![devDependencies Status](https://david-dm.org/winkjs/wink-helpers/dev-status.svg)](https://david-dm.org/winkjs/wink-helpers?type=dev)
 
 <img align="right" src="https://decisively.github.io/wink-logos/logo-title.png" width="100px" >
 
-Perform commonly needed operations of array and objects using **`wink-helpers`**. It is a part of [wink](http://winkjs.org/) — a growing family of high quality packages for Statistical Analysis, Natural Language Processing and Machine Learning in NodeJS.
+Perform commonly needed operations of array, object and string using **`wink-helpers`**. It is a part of [wink](http://winkjs.org/) — a growing family of high quality packages for Statistical Analysis, Natural Language Processing and Machine Learning in NodeJS.
 
 
 ## Installation
@@ -45,6 +44,11 @@ console.log( helpers.object.isObject( new Set() ) );
 
 console.log( helpers.object.table( { mobile: 33, chargers: 45, usb: 27 } ) );
 // -> [ [ "mobile", 33 ], [ "chargers", 45 ], [ "usb", 27 ] ]
+
+
+/* Use string helper */
+console.log( helpers.string.normalize( 'Résumé' ) );
+// -> 'resume'
 ```
 
 ## API
@@ -132,7 +136,7 @@ If you spot a bug and the same has not yet been reported, raise a new [issue](ht
 
 
 ## Copyright & License
-**wink-helpers** is copyright 2017 [GRAYPE Systems Private Limited](http://graype.in/).
+**wink-helpers** is copyright 2017-18 [GRAYPE Systems Private Limited](http://graype.in/).
 
 It is licensed under the under the terms of the GNU Affero General Public License as published by the Free
 Software Foundation, version 3 of the License.
