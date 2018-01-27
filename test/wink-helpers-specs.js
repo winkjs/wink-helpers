@@ -325,3 +325,23 @@ describe( 'validate finite number', function () {
     } );
   } );
 } );
+
+describe( 'normalize string test cycle', function () {
+  var words = [
+                [ 'Renée', 'renee' ],
+                [ 'Zoë', 'zoe' ],
+                [ 'exposé', 'expose' ],
+                [ 'résumé', 'resume' ],
+                [ 'Nestlé', 'nestle' ],
+                [ 'Citroën', 'citroen' ],
+                [ 'ACME', 'acme' ],
+                [ 'AbCdEf', 'abcdef' ],
+                [ 'daïs', 'dais' ]
+              ];
+
+  words.forEach( function ( word ) {
+    it( 'normalize ' + word[ 0 ] + ' must give ' + word[ 1 ], function () {
+        expect( helpers.string.normalize( word[ 0 ] ) ).to.deep.equal( word[ 1 ] );
+    } );
+  } );
+} );

@@ -48,7 +48,7 @@ console.log( helpers.object.table( { mobile: 33, chargers: 45, usb: 27 } ) );
 ```
 
 ## API
-The helper functions are classified into [array](#array), [object](#object) and [validate](#validate).
+The helper functions are classified into [array](#array), [object](#object), [string](#string) and [validate](#validate).
 
 ### array
 
@@ -106,6 +106,11 @@ Returns the *frequency* or *count* of every unique value from each `key: value` 
 
 #### table( obj [, f] )
 Converts each `key: value` pair in the `obj` into an array of `[ key, value ]` pairs. Note the returned value be an array of array. Second argument - `f` is optional; it is a function, which is called with each *value*.
+
+### string
+
+#### normalize( str )
+Normalizes the `str` by converting it to lower case and stripping the diacritical marks (if any).
 
 ### validate
 

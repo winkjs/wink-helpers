@@ -268,4 +268,28 @@ helpers.validate.isFiniteNumber = function ( n ) {
   );
 }; // isFiniteNumber()
 
+// ### Object Helpers
+
+helpers.string = Object.create( null );
+
+// Regex for [diacritical marks](https://en.wikipedia.org/wiki/Combining_Diacritical_Marks) removal.
+var rgxDiacritical = /[\u0300-\u036f]/g;
+
+/**
+ *
+ * Normalizes the token's value by converting it to lower case and stripping
+ * the diacritical marks (if any).
+ *
+ * @param {string} str — that needs to be normalized.
+ * @return {string} the normalized value.
+ * @example
+ * normalize( 'Nestlé' );
+ * // -> nestle
+*/
+helpers.string.normalize = function ( str ) {
+  return (
+    str.toLowerCase().normalize( 'NFD' ).replace( rgxDiacritical, '' )
+  );
+}; // normalize()
+
 module.exports = helpers;
