@@ -159,6 +159,29 @@ helpers.array.product = function ( a ) {
   );
 };
 
+// #### shuffle
+
+// Randomly shuffles the elements of an array and returns the same.
+// Reference: Chapter on Random Numbers/Shuffling in Seminumerical algorithms.
+// The Art of Computer Programming Volume II by Donald E Kunth
+helpers.array.shuffle = function ( array ) {
+  var a = array;
+  var balance = a.length;
+  var candidate;
+  var temp;
+
+  while ( balance ) {
+    candidate = Math.floor( Math.random() * balance );
+    balance -= 1;
+
+    temp = a[ balance ];
+    a[ balance ] = a[ candidate ];
+    a[ candidate ] = temp;
+  }
+
+  return ( a );
+};
+
 
 // ### Object Helpers
 

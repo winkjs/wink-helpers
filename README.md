@@ -34,6 +34,9 @@ console.log( ppl.sort( helpers.array.ascendingOn( 'age' ) ) );
 console.log( helpers.array.product( [ [ 9, 8 ], [ 1, 2 ] ] ) );
 // -> [ [ 9, 1 ], [ 9, 2 ], [ 8, 1 ], [ 8, 2 ] ]
 
+console.log( helpers.array.shuffle( [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ] ) );
+// -> [ 3, 7, 8, 9, 6, 4, 2, 1, 10, 5 ]
+// Note: output will change on every call!
 
 /* Use object helpers */
 console.log( helpers.object.isObject( {} ) );
@@ -90,6 +93,8 @@ Returns the *cartesian product* of the arrays present inside the `array` argumen
   [ 3, 4, 6 ]
 ]
 ```
+#### shuffle( array )
+Randomly shuffles the order of the elements in the input array using algorithm described in Chapter 3 on Random Numbers of "The Art of Computer Programming Volume II" by Donald E Knuth.
 
 ### object
 

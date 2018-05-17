@@ -345,3 +345,25 @@ describe( 'normalize string test cycle', function () {
     } );
   } );
 } );
+
+describe( 'shuffle array test cycle', function () {
+  var array = [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20 ];
+  var originalArray = array.slice();
+  var differences = 0;
+  var totalDiff = 0;
+  var trials = 1000;
+
+
+  for ( let k = 0; k < trials; k += 1 ) {
+    differences = 0;
+    helpers.array.shuffle( array );
+    for ( let i = 0; i < array.length; i += 1 ) {
+      if ( array[ i ] !== originalArray[ i ] ) differences += 1;
+    }
+    totalDiff += differences;
+  }
+
+  it( 'average % difference over multiple trials should be >90%', function () {
+      expect( ( ( totalDiff / trials ) / array.length ) > 0.9 ).to.equal( true );
+  } );
+} );

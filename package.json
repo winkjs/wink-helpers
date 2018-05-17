@@ -12,7 +12,9 @@
     "Validate",
     "Validation",
     "Sort",
-    "Pluck"
+    "Pluck",
+    "Shuffle",
+    "Random Shuffle"
   ],
   "main": "src/wink-helpers.js",
   "scripts": {
