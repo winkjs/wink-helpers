@@ -135,6 +135,14 @@ Tests if argument `value` is a finite integer; returns `true` if it is, otherwis
 #### isFiniteNumber( value )
 Tests if argument `value` is a finite number; returns `true` if it is, otherwise returns `false`.
 
+#### cross( classLabels )
+Performs cross validation and generates detailed performance metrics along with the confusion matrix. It is a higher order function that returns an object containing `evaluate()`, `metrics()`,  and `reset()` functions. The `classLabels` should be an array containing all the class labels that may be predicted.
+
+The `evaluate()` function accepts two parameters viz. `truth` — the actual label and `guess` — the predicted label. It is typically called for every row of validation dataset. The evaluation may fail if `truth` or `guess` value is not a valid `classLabels`; or if guess is equal to `unknown`.
+
+The `metrics()` returns an object containing macro-averaged `avgPrecision`, `avgRecall`,  `avgFMeasure` values along with other details such as label-wise recall/precision/f-measure values and the confusion matrix. A value of `null` is returned if no evaluate() has been called before.
+
+The `reset()` re-initializes the current instance for another round of evaluation; the class labels defined at instance creation time are not touched.
 
 ## Need Help?
 If you spot a bug and the same has not yet been reported, raise a new [issue](https://github.com/winkjs/wink-helpers/issues) or consider fixing it and sending a pull request.
