@@ -1,7 +1,7 @@
 {
   "name": "wink-helpers",
   "version": "1.4.0",
-  "description": "Low level helper functions for Javascript array, object and string",
+  "description": "Functions for cross validation, shuffle, cartesian product and more",
   "keywords": [
     "Array",
     "Object",
@@ -14,7 +14,9 @@
     "Sort",
     "Pluck",
     "Shuffle",
-    "Random Shuffle"
+    "Random Shuffle",
+    "Cross Validation",
+    "Machine Learning"
   ],
   "main": "src/wink-helpers.js",
   "scripts": {

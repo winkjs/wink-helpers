@@ -1,12 +1,12 @@
 
 # wink-helpers
-Helper functions for Javascript array, object, and string
+Functions for cross validation, shuffle, cartesian product and more
 
 ### [![Build Status](https://api.travis-ci.org/winkjs/wink-helpers.svg?branch=master)](https://travis-ci.org/winkjs/wink-helpers) [![Coverage Status](https://coveralls.io/repos/github/winkjs/wink-helpers/badge.svg?branch=master)](https://coveralls.io/github/winkjs/wink-helpers?branch=master) [![Inline docs](http://inch-ci.org/github/winkjs/wink-helpers.svg?branch=master)](http://inch-ci.org/github/winkjs/wink-helpers) [![devDependencies Status](https://david-dm.org/winkjs/wink-helpers/dev-status.svg)](https://david-dm.org/winkjs/wink-helpers?type=dev)
 
 <img align="right" src="https://decisively.github.io/wink-logos/logo-title.png" width="100px" >
 
-Perform commonly needed operations of array, object and string using **`wink-helpers`**. It is a part of [wink](http://winkjs.org/) — a growing family of high quality packages for Statistical Analysis, Natural Language Processing and Machine Learning in NodeJS.
+Perform cross validation for machine learning, shuffle and many other operations using **`wink-helpers`**. It is a part of [wink](http://winkjs.org/) — a growing family of high quality packages for Statistical Analysis, Natural Language Processing and Machine Learning in NodeJS.
 
 
 ## Installation
