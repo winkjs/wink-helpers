@@ -1,6 +1,6 @@
 {
   "name": "wink-helpers",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "description": "Functions for cross validation, shuffle, cartesian product and more",
   "keywords": [
     "Array",
