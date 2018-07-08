@@ -291,6 +291,145 @@ helpers.validate.isFiniteNumber = function ( n ) {
   );
 }; // isFiniteNumber()
 
+helpers.validate.cross = function ( classLabels ) {
+  // wink's const for unknown predictions!
+  const unknown = 'unknown';
+  // To ensure that metrics is not computed prior to evaluation.
+  var evaluated = false;
+  // The confusion matrix.
+  var cm;
+  var precision;
+  var recall;
+  var fmeasure;
+
+  // The class labels is assigned to this variable.
+  var labels;
+  // The length of `labels` array.
+  var labelCount;
+  var labelsObj = Object.create( null );
+
+  // Returned!
+  var methods = Object.create( null );
+
+
+  var reset = function ( ) {
+    evaluated = false;
+    cm = Object.create( null );
+    precision = Object.create( null );
+    recall = Object.create( null );
+    fmeasure = Object.create( null );
+
+    // Initialize confusion matrix and metrics.
+    for ( let i = 0; i < labelCount; i += 1 ) {
+      const row = labels[ i ];
+      labelsObj[ row ] = true;
+      cm[ row ] = Object.create( null );
+      precision[ row ] = 0;
+      recall[ row ] = 0;
+      fmeasure[ row ] = 0;
+      for ( let j = 0; j < labelCount; j += 1 ) {
+        const col = labels[ j ];
+        cm[ row ][ col ] = 0;
+      }
+    }
+  }; // reset()
+
+  var evaluate = function ( truth, guess ) {
+    // If prediction failed then return false!
+    if ( guess === unknown || !labelsObj[ truth ] || !labelsObj[ guess ] ) return false;
+    // Update confusion matrix.
+    if ( guess === truth ) {
+      cm[ truth ][ guess ] += 1;
+    } else {
+      cm[ guess ][ truth ] += 1;
+    }
+    evaluated = true;
+    return true;
+  }; // evaluate()
+
+  var metrics = function ( ) {
+    if ( !evaluated ) return null;
+    // Numerators for every label; they are same for precision & recall both.
+    var n = Object.create( null );
+    // Only denominators differs for precision & recall
+    var pd = Object.create( null );
+    var rd = Object.create( null );
+    // `row` and `col` of confusion matrix.
+    var col, row;
+    var i, j;
+    // Macro average values for metrics.
+    var avgPrecision = 0;
+    var avgRecall = 0;
+    var avgFMeasure = 0;
+
+    // Compute label-wise numerators & denominators!
+    for ( i = 0; i < labelCount; i += 1 ) {
+      row = labels[ i ];
+      for ( j = 0; j < labelCount; j += 1 ) {
+        col = labels[ j ];
+        if ( row === col ) {
+          n[ row ] = cm[ row ][ col ];
+        }
+        pd[ row ] = cm[ row ][ col ] + ( pd[ row ] || 0 );
+        rd[ row ] = cm[ col ][ row ] + ( rd[ row ] || 0 );
+      }
+    }
+    // Ready to compute metrics.
+    for ( i = 0; i < labelCount; i += 1 ) {
+      row = labels[ i ];
+      precision[ row ] = +( n[ row ] / pd[ row ] ).toFixed( 4 );
+      // NaN can occur if a label has not been encountered.
+      if ( isNaN( precision[ row ] ) ) precision[ row ] = 0;
+
+      recall[ row ] = +( n[ row ] / rd[ row ] ).toFixed( 4 );
+      if ( isNaN( recall[ row ] ) ) recall[ row ] = 0;
+
+      fmeasure[ row ] = +( 2 * precision[ row ] * recall[ row ] / ( precision[ row ] + recall[ row ] ) ).toFixed( 4 );
+      if ( isNaN( fmeasure[ row ] ) ) fmeasure[ row ] = 0;
+    }
+    // Compute thier averages, note they will be macro avegages.
+    for ( i = 0; i < labelCount; i += 1 ) {
+      avgPrecision += ( precision[ labels[ i ] ] / labelCount );
+      avgRecall += ( recall[ labels[ i ] ] / labelCount );
+      avgFMeasure += ( fmeasure[ labels[ i ] ] / labelCount );
+    }
+    // Return metrics.
+    return (
+      {
+        // Macro-averaged metrics.
+        avgPrecision: +avgPrecision.toFixed( 4 ),
+        avgRecall: +avgRecall.toFixed( 4 ),
+        avgFMeasure: +avgFMeasure.toFixed( 4 ),
+        details: {
+          // Confusion Matrix.
+          confusionMatrix: cm,
+          // Label wise metrics details, from those averages were computed.
+          precision: precision,
+          recall: recall,
+          fmeasure: fmeasure
+        }
+      }
+    );
+  }; // metrics()
+
+  if ( !helpers.validate.isArray( classLabels ) ) {
+    throw Error( 'cross validate: class labels must be an array.' );
+  }
+  if ( classLabels.length < 2 ) {
+    throw Error( 'cross validate: at least 2 class labels are required.' );
+  }
+  labels = classLabels;
+  labelCount = labels.length;
+
+  reset();
+
+  methods.reset = reset;
+  methods.evaluate = evaluate;
+  methods.metrics = metrics;
+
+  return methods;
+}; // cross()
+
 // ### Object Helpers
 
 helpers.string = Object.create( null );
@@ -316,3 +455,23 @@ helpers.string.normalize = function ( str ) {
 }; // normalize()
 
 module.exports = helpers;
+
+// var x = helpers.validate.cross( [ 'urgent', 'normal', 'spam' ] );
+
+// for ( let i = 0; i < 8; i += 1 ) x.evaluate( 'urgent', 'urgent' );
+// for ( let i = 0; i < 10; i += 1 ) x.evaluate( 'normal', 'urgent' );
+// for ( let i = 0; i < 1; i += 1 ) x.evaluate( 'spam', 'urgent' );
+//
+// for ( let i = 0; i < 5; i += 1 ) x.evaluate( 'urgent', 'normal' );
+// for ( let i = 0; i < 60; i += 1 ) x.evaluate( 'normal', 'normal' );
+// for ( let i = 0; i < 50; i += 1 ) x.evaluate( 'spam', 'normal' );
+//
+// for ( let i = 0; i < 3; i += 1 ) x.evaluate( 'urgent', 'spam' );
+// for ( let i = 0; i < 30; i += 1 ) x.evaluate( 'normal', 'spam' );
+// for ( let i = 0; i < 200; i += 1 ) x.evaluate( 'spam', 'spam' );
+// x.evaluate( 'urgent', 'spam' );
+// x.metrics();
+// x.reset();
+// x.metrics();
+// x = helpers.validate.cross();
+// console.log( x.metrics() );

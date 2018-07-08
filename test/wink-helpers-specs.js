@@ -367,3 +367,49 @@ describe( 'shuffle array test cycle', function () {
       expect( ( ( totalDiff / trials ) / array.length ) > 0.9 ).to.equal( true );
   } );
 } );
+
+describe( 'cross validation test cycle', function () {
+  var hvx = helpers.validate.cross;
+
+  it( 'should throw labels must be array if undefined is passed', function () {
+    expect( hvx.bind( null ) ).to.throw( 'cross validate: class labels must be an array.' );
+  } );
+
+  it( 'should throw min 2 labels required if array has one label', function () {
+    expect( hvx.bind( null, [ 'one' ] ) ).to.throw( 'cross validate: at least 2 class labels are required.' );
+  } );
+
+  it( 'should compute metrics with proper evaluation', function () {
+    var x = hvx( [ 'urgent', 'normal', 'spam' ] );
+    // With proper data
+    for ( let i = 0; i < 8; i += 1 ) x.evaluate( 'urgent', 'urgent' );
+    for ( let i = 0; i < 10; i += 1 ) x.evaluate( 'normal', 'urgent' );
+    for ( let i = 0; i < 1; i += 1 ) x.evaluate( 'spam', 'urgent' );
+
+    for ( let i = 0; i < 5; i += 1 ) x.evaluate( 'urgent', 'normal' );
+    for ( let i = 0; i < 60; i += 1 ) x.evaluate( 'normal', 'normal' );
+    for ( let i = 0; i < 50; i += 1 ) x.evaluate( 'spam', 'normal' );
+
+    for ( let i = 0; i < 3; i += 1 ) x.evaluate( 'urgent', 'spam' );
+    for ( let i = 0; i < 30; i += 1 ) x.evaluate( 'normal', 'spam' );
+    for ( let i = 0; i < 200; i += 1 ) x.evaluate( 'spam', 'spam' );
+
+    var m = x.metrics();
+    expect( m.avgPrecision ).to.equal( 0.6004 );
+    expect( m.avgRecall ).to.equal( 0.6323 );
+    expect( m.avgFMeasure ).to.equal( 0.6139 );
+
+    // Reset test with incorrect truth & guess values
+    x.reset();
+    expect( x.metrics() ).to.equal( null );
+    expect( x.evaluate( 'spam', 'unknown' ) ).to.equal( false );
+    expect( x.evaluate( 'pam', 'sam' ) ).to.equal( false );
+
+    // With missing labels
+    expect( x.evaluate( 'spam', 'urgent' ) ).to.equal( true );
+    m = x.metrics();
+    expect( m.avgPrecision ).to.equal( 0 );
+    expect( m.avgRecall ).to.equal( 0 );
+    expect( m.avgFMeasure ).to.equal( 0 );
+  } );
+} );
