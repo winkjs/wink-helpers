@@ -291,6 +291,15 @@ helpers.validate.isFiniteNumber = function ( n ) {
   );
 }; // isFiniteNumber()
 
+// ### cross validation
+/**
+ *
+ * Creates an instance of cross validator useful for machine learning tasks.
+ *
+ * @param {string[]} classLabels - array containing all the class labels.
+ * @return {methods} object conatining set of API methods for tasks like evalutaion,
+ * reset and metrics generation.
+*/
 helpers.validate.cross = function ( classLabels ) {
   // wink's const for unknown predictions!
   const unknown = 'unknown';
@@ -312,6 +321,13 @@ helpers.validate.cross = function ( classLabels ) {
   var methods = Object.create( null );
 
 
+  /**
+   *
+   * Resets the current instance for another round of evaluation; the class
+   * labels defined at instance creation time are not touched.
+   *
+   * @return {undefined} nothing!
+  */
   var reset = function ( ) {
     evaluated = false;
     cm = Object.create( null );
@@ -334,6 +350,16 @@ helpers.validate.cross = function ( classLabels ) {
     }
   }; // reset()
 
+  /**
+   *
+   * Creates an instance of cross validator useful for machine learning tasks.
+   *
+   * @param {string} truth - the actual class label.
+   * @param {string} guess - the predicted class label.
+   * @return {boolean} returns true if the evaluation is successful. The evaluation
+   * may fail if `truth` or `guess` is not in the array `classLabels` provided at
+   * instance creation time; or if guess is equal to `unknown`.
+  */
   var evaluate = function ( truth, guess ) {
     // If prediction failed then return false!
     if ( guess === unknown || !labelsObj[ truth ] || !labelsObj[ guess ] ) return false;
@@ -347,6 +373,17 @@ helpers.validate.cross = function ( classLabels ) {
     return true;
   }; // evaluate()
 
+  /**
+   *
+   * It computes a detailed metrics consisting of macro-averaged precision,
+   * recall and f-measure along with their label-wise values and the confusion
+   * matrix.
+   *
+   * @return {object} object containing macro-averaged `avgPrecision`, `avgRecall`,
+   * `avgFMeasure` values along with other details such as label-wise values
+   * and the confusion matrix. A value of `null` is returned if no evaluate()
+   * has been called before.
+  */
   var metrics = function ( ) {
     if ( !evaluated ) return null;
     // Numerators for every label; they are same for precision & recall both.
@@ -455,23 +492,3 @@ helpers.string.normalize = function ( str ) {
 }; // normalize()
 
 module.exports = helpers;
-
-// var x = helpers.validate.cross( [ 'urgent', 'normal', 'spam' ] );
-
-// for ( let i = 0; i < 8; i += 1 ) x.evaluate( 'urgent', 'urgent' );
-// for ( let i = 0; i < 10; i += 1 ) x.evaluate( 'normal', 'urgent' );
-// for ( let i = 0; i < 1; i += 1 ) x.evaluate( 'spam', 'urgent' );
-//
-// for ( let i = 0; i < 5; i += 1 ) x.evaluate( 'urgent', 'normal' );
-// for ( let i = 0; i < 60; i += 1 ) x.evaluate( 'normal', 'normal' );
-// for ( let i = 0; i < 50; i += 1 ) x.evaluate( 'spam', 'normal' );
-//
-// for ( let i = 0; i < 3; i += 1 ) x.evaluate( 'urgent', 'spam' );
-// for ( let i = 0; i < 30; i += 1 ) x.evaluate( 'normal', 'spam' );
-// for ( let i = 0; i < 200; i += 1 ) x.evaluate( 'spam', 'spam' );
-// x.evaluate( 'urgent', 'spam' );
-// x.metrics();
-// x.reset();
-// x.metrics();
-// x = helpers.validate.cross();
-// console.log( x.metrics() );
