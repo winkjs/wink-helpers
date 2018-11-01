@@ -6,7 +6,7 @@ Functions for cross validation, shuffle, cartesian product and more
 
 <img align="right" src="https://decisively.github.io/wink-logos/logo-title.png" width="100px" >
 
-Perform cross validation for machine learning, shuffle and many other operations using **`wink-helpers`**. It is a part of [wink](http://winkjs.org/) — a growing family of high quality packages for Statistical Analysis, Natural Language Processing and Machine Learning in NodeJS.
+Perform cross validation for machine learning, shuffle an array randomly, remove diacritical marks from text, find cartesian product and more using **`wink-helpers`**.
 
 
 ## Installation
@@ -147,9 +147,12 @@ The `reset()` re-initializes the current instance for another round of evaluatio
 ## Need Help?
 If you spot a bug and the same has not yet been reported, raise a new [issue](https://github.com/winkjs/wink-helpers/issues) or consider fixing it and sending a pull request.
 
+### About wink
+
+[Wink](http://winkjs.org/) is a family of open source packages for **Statistical Analysis**, **Natural Language Processing** and **Machine Learning** in NodeJS. The code is **thoroughly documented** for easy human comprehension and has a **test coverage of ~100%** for reliability to build production grade solutions.
+
 
 ## Copyright & License
 **wink-helpers** is copyright 2017-18 [GRAYPE Systems Private Limited](http://graype.in/).
 
-It is licensed under the under the terms of the GNU Affero General Public License as published by the Free
-Software Foundation, version 3 of the License.
+It is licensed under the terms of the MIT License.
