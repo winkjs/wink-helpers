@@ -153,6 +153,6 @@ If you spot a bug and the same has not yet been reported, raise a new [issue](ht
 
 
 ## Copyright & License
-**wink-helpers** is copyright 2017-18 [GRAYPE Systems Private Limited](http://graype.in/).
+**wink-helpers** is copyright 2017-21 [GRAYPE Systems Private Limited](http://graype.in/).
 
 It is licensed under the terms of the MIT License.
